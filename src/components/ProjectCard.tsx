@@ -6,12 +6,11 @@ interface ProjectCardProps {
   description: string;
   image: string;
   tags: Array<{ id: string; name: string }>;
-  link: string;
   index: number;
   onClick: () => void;
 }
 
-const ProjectCard = ({ title, description, tags, image, link, index, onClick }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, tags, image, index, onClick }: ProjectCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   
   // Анимация появления карточки с помощью GSAP

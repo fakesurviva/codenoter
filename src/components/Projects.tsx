@@ -33,7 +33,6 @@ const Projects: React.FC = () => {
             description={project.description}
             image={project.image}
             tags={project.tags}
-            link={project.link}
             index={index}
             onClick={() => handleProjectClick(project)}
           />

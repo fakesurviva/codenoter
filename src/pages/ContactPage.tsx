@@ -24,12 +24,16 @@ const ContactPage = () => {
     setStatus({ type: null, message: '' });
 
     try {
-      const response = await fetch('http://localhost:3001/api/send-message', {
+      const response = await fetch('/api/send-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.telegram,
+          message: formData.message
+        }),
       });
 
       if (!response.ok) {

@@ -31,10 +31,10 @@
       "@hooks/*": ["src/hooks/*"],
       "@services/*": ["src/services/*"],
       "@utils/*": ["src/utils/*"],
-      "@context/*": ["src/context/*"]
+      "@context/*": ["src/context/*"],
+      "@api/*": ["src/api/*"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["src/server/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

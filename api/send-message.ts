@@ -51,7 +51,6 @@ export default async function handler(
       body: JSON.stringify({
         chat_id: chatId,
         text: formattedMessage,
-        parse_mode: 'HTML',
       }),
     });
 

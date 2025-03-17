@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  tags: string[];
+  tags: Array<{ id: string; name: string }>;
   link: string;
   index: number;
+  onClick: () => void;
 }
 
-const ProjectCard = ({ title, description, tags, image, link, index }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, tags, image, link, index, onClick }: ProjectCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [imgSrc, setImgSrc] = useState(image);
   
   // Анимация появления карточки с помощью GSAP
   useEffect(() => {
@@ -50,33 +50,35 @@ const ProjectCard = ({ title, description, tags, image, link, index }: ProjectCa
     };
   }, [index]);
 
-  const handleImageError = () => {
-    setImgSrc('/images/project-placeholder.svg');
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onClick();
   };
 
   return (
-    <div className="project-card hover-lift" ref={cardRef}>
-      <a href={link} target="_blank" rel="noopener noreferrer" className="project-card__link">
-        <div className="project-card__image">
-          <img 
-            src={imgSrc} 
-            alt={title} 
-            loading="lazy" 
-            onError={handleImageError}
-          />
-        </div>
+    <div className="project-card hover-lift" ref={cardRef} onClick={handleClick}>
+      <div className="project-card__image">
+        <img 
+          src={image} 
+          alt={title} 
+          loading="lazy"
+        />
+      </div>
+      
+      <div className="project-card__content">
+        <h3 className="project-card__title">{title}</h3>
+        <p className="project-card__description">{description}</p>
         
-        <div className="project-card__content">
-          <h3 className="project-card__title">{title}</h3>
-          <p className="project-card__description">{description}</p>
-          
-          <div className="project-card__tags">
-            {tags.map((tag, i) => (
-              <span key={i} className="project-card__tag">{tag}</span>
-            ))}
-          </div>
+        <div className="project-card__tags">
+          {tags.map((tag) => (
+            <span key={tag.id} className="tag">{tag.name}</span>
+          ))}
         </div>
-      </a>
+
+        <button className="project-card__button">
+          Подробнее
+        </button>
+      </div>
     </div>
   );
 };

@@ -27,10 +27,20 @@ function findFiles(dir, extension, fileList = []) {
 function updateImports(filePath) {
   let content = fs.readFileSync(filePath, 'utf8');
   
-  // Заменяем @import на @use
-  let updatedContent = content.replace(/@import\s+['"](.+_variables)(.scss)?['"]\s*;/g, '@use \'$1\' as *;');
+  // Заменяем @import на @use и исправляем пути
+  let updatedContent = content;
+  
+  // Заменяем @import '../_variables' на @use '../variables' as *
   updatedContent = updatedContent.replace(/@import\s+['"](.+)\/(_variables)(.scss)?['"]\s*;/g, '@use \'$1/variables\' as *;');
+  
+  // Заменяем @import '_variables' на @use 'variables' as *
   updatedContent = updatedContent.replace(/@import\s+['"]_variables(.scss)?['"]\s*;/g, '@use \'variables\' as *;');
+  
+  // Заменяем @use '../_variables' на @use '../variables'
+  updatedContent = updatedContent.replace(/@use\s+['"](.+)\/(_variables)(.scss)?['"]\s+as\s+\*/g, '@use \'$1/variables\' as *');
+  
+  // Заменяем @use '_variables' на @use 'variables'
+  updatedContent = updatedContent.replace(/@use\s+['"]_variables(.scss)?['"]\s+as\s+\*/g, '@use \'variables\' as *');
   
   if (content !== updatedContent) {
     fs.writeFileSync(filePath, updatedContent, 'utf8');

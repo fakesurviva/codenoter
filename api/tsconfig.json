@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "types": ["@vercel/node"]
+    "types": ["@vercel/node", "express", "cors", "node"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]

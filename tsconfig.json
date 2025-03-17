@@ -32,9 +32,10 @@
       "@services/*": ["src/services/*"],
       "@utils/*": ["src/utils/*"],
       "@context/*": ["src/context/*"],
-      "@api/*": ["src/api/*"]
-    }
+      "@api/*": ["api/*"]
+    },
+    "types": ["@vercel/node"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "api/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

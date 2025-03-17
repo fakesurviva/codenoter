@@ -1,0 +1,434 @@
+@import '../_variables';
+
+.services {
+  position: relative;
+  background-color: #000000;
+  width: 100%;
+  padding: $spacing-3xl 0;
+  overflow: hidden;
+  
+  // Боковые элементы размытия
+  &__blur {
+    &-left, &-right {
+      position: absolute;
+      top: 0;
+      width: 150px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    &-left {
+      left: 0;
+      background: linear-gradient(to right, 
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.7) 30%,
+        transparent
+      );
+    }
+
+    &-right {
+      right: 0;
+      background: linear-gradient(to left, 
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.7) 30%,
+        transparent
+      );
+    }
+  }
+  
+  // Маска размытия по краям
+  &::after {
+    display: none;
+  }
+  
+  // Фоновые элементы
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    
+    // Уникальное свечение для секции услуг
+    &-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 70% 20%, rgba(#8a2be2, 0.03) 0%, transparent 60%),
+        radial-gradient(circle at 30% 80%, rgba($color-accent, 0.03) 0%, transparent 60%);
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 2s ease-out 0.5s forwards;
+    }
+    
+    // Тонкая рамка
+    &-frame {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      bottom: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+    }
+    
+    // Светящиеся точки
+    &-dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+      
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.4);
+        opacity: 0;
+      }
+      
+      &::before {
+        top: 35%;
+        left: 65%;
+        animation: 
+          fadeIn 2s ease-out 1.5s forwards,
+          floatDot 10s ease-in-out 3s infinite;
+      }
+      
+      &::after {
+        top: 65%;
+        left: 35%;
+        animation: 
+          fadeIn 2s ease-out 2s forwards,
+          floatDot 15s ease-in-out 4s infinite;
+      }
+    }
+    
+    // Вертикальная линия
+    &-horizon {
+      position: absolute;
+      top: 0;
+      left: 70%;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 20%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 80%, 
+        transparent 100%
+      );
+      box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.1);
+      z-index: 3;
+      pointer-events: none;
+      transform: scaleY(0);
+      transform-origin: top;
+      animation: verticalAppear 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1.4s forwards;
+    }
+  }
+  
+  &__title {
+    position: relative;
+    margin-bottom: $spacing-2xl;
+    text-align: center;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    z-index: 2;
+    
+    &-container {
+      position: relative;
+      display: inline-block;
+      padding: 0 $spacing-lg;
+      
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      &::before {
+        left: -20px;
+      }
+      
+      &::after {
+        right: -20px;
+      }
+    }
+    
+    &-accent {
+      color: $color-accent;
+    }
+  }
+  
+  &__subtitle {
+    text-align: center;
+    font-size: $font-size-md;
+    color: $color-light-gray;
+    margin-bottom: $spacing-2xl;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+    position: relative;
+  }
+  
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-xl;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+    z-index: 2;
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+      padding: 0 $spacing-md;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__blur-left, &__blur-right {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    height: 100vh;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  &__blur-left {
+    left: 0;
+    background: linear-gradient(to right, 
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.7) 30%,
+      transparent
+    );
+  }
+
+  &__blur-right {
+    right: 0;
+    background: linear-gradient(to left, 
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.7) 30%,
+      transparent
+    );
+  }
+}
+
+.service-card {
+  background-color: rgba($color-dark-gray, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: $spacing-xl;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 24px;
+    background: linear-gradient(
+      135deg,
+      transparent,
+      rgba($color-accent, 0.2),
+      transparent
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  
+  &__icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    margin-bottom: $spacing-lg;
+    z-index: 1;
+    transition: transform 0.4s ease;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: $color-white;
+      transition: all 0.3s ease;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle at center,
+        rgba($color-accent, 0.1),
+        transparent 70%
+      );
+      filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+  
+  &__title {
+    position: relative;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-md;
+    font-weight: $font-weight-bold;
+    z-index: 1;
+    color: $color-white;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: rgba($color-accent, 0.5);
+      transition: width 0.3s ease;
+    }
+  }
+  
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-light-gray;
+    line-height: 1.6;
+    z-index: 1;
+    position: relative;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    position: relative;
+  }
+  
+  &__feature {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-xs;
+    color: $color-light-gray;
+    margin-bottom: $spacing-xs;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    &-bullet {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: rgba($color-accent, 0.5);
+      margin-right: $spacing-xs;
+      transition: background-color 0.3s ease;
+    }
+  }
+  
+  &:hover {
+    transform: translateY(-8px);
+    border-color: rgba($color-accent, 0.2);
+    
+    .service-card__icon {
+      transform: scale(1.1);
+      
+      svg {
+        fill: $color-accent;
+      }
+      
+      &::after {
+        opacity: 1;
+      }
+    }
+    
+    .service-card__title::after {
+      width: 60px;
+      background-color: $color-accent;
+    }
+    
+    .service-card__feature-bullet {
+      background-color: $color-accent;
+    }
+  }
+}
+
+@keyframes floatDot {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(15px, 10px);
+  }
+  50% {
+    transform: translate(5px, 20px);
+  }
+  75% {
+    transform: translate(-10px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes verticalAppear {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+} 

@@ -1,0 +1,192 @@
+@import '../_variables.scss';
+
+@keyframes codeBlockAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(100px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes textAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Основной контент
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  
+  &__content {
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    animation: textAppear 0.8s ease-out forwards;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    opacity: 0;
+    animation: textAppear 0.8s ease-out 0.2s forwards;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: textAppear 0.8s ease-out 0.4s forwards;
+  }
+}
+
+.code-block {
+  position: absolute;
+  top: 50%;
+  right: -120px;
+  transform: translateY(-50%);
+  width: 450px;
+  background: rgba($color-dark-gray, 0.8);
+  border: 1px solid rgba($color-accent, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  opacity: 0;
+  visibility: visible;
+  animation: codeBlockAppear 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+
+  &__header {
+    padding: 12px 16px;
+    background: rgba($color-black, 0.3);
+    border-bottom: 1px solid rgba($color-accent, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $color-accent;
+    font-size: $font-size-sm;
+    font-family: $font-mono;
+  }
+
+  &__content {
+    padding: 20px;
+    font-family: $font-mono;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+    color: $color-light-gray;
+
+    .keyword { color: $color-accent; }
+    .string { color: #e9b362; }
+    .bracket { color: $color-white; }
+    .comment { color: #6c7a89; }
+  }
+}
+
+// Блок с кодом только для больших экранов
+@media (min-width: 1024px) {
+  .hero-section {
+    justify-content: flex-start;
+    padding-left: calc((100vw - 1400px) / 2 + 40px);
+    
+    &__content {
+      text-align: left;
+    }
+  }
+}
+
+// Большие экраны (>1440px)
+@media (min-width: 1441px) {
+  .hero-section {
+    padding-left: calc((100vw - 1400px) / 2 + 40px);
+  }
+  
+  .code-block {
+    right: calc((100vw - 1400px) / 2 - 120px);
+  }
+}
+
+// Средние экраны (1024px - 1440px)
+@media (max-width: 1440px) {
+  .code-block {
+    width: 400px;
+    right: -100px;
+  }
+}
+
+// Планшеты и мобильные (до 1023px)
+@media (max-width: 1023px) {
+  .code-block {
+    display: none;
+  }
+  
+  .hero-section {
+    padding: 40px 20px;
+    justify-content: center;
+    
+    &__content {
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// Мобильные устройства (до 767px)
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 20px;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Анимированный курсор
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: $color-accent;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+} 

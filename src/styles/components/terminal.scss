@@ -1,0 +1,84 @@
+@import '../_variables';
+
+.terminal {
+  width: 100%;
+  background-color: $color-black;
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  line-height: 1.6;
+  box-shadow: $shadow-lg;
+  
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: $spacing-xs $spacing-sm;
+    background-color: $color-gray;
+    
+    .dots {
+      display: flex;
+      margin-right: $spacing-md;
+      
+      span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+        
+        &:nth-child(1) {
+          background-color: #ff5f56;
+        }
+        
+        &:nth-child(2) {
+          background-color: #ffbd2e;
+        }
+        
+        &:nth-child(3) {
+          background-color: #27c93f;
+        }
+      }
+    }
+    
+    .title {
+      color: $color-light-gray;
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &__content {
+    padding: $spacing-md;
+    color: $color-white;
+    
+    .line {
+      display: flex;
+      margin-bottom: $spacing-xs;
+      
+      .prompt {
+        color: $color-light-gray;
+        margin-right: $spacing-sm;
+      }
+      
+      .command {
+        color: $color-white;
+      }
+    }
+    
+    .output {
+      margin-bottom: $spacing-sm;
+      color: $color-light-gray;
+      
+      &--success {
+        color: #27c93f;
+      }
+      
+      &--error {
+        color: #ff5f56;
+      }
+      
+      &--warning {
+        color: #ffbd2e;
+      }
+    }
+  }
+} 

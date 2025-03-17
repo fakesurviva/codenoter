@@ -1,0 +1,74 @@
+@import '../_variables';
+
+.page {
+  .page-header {
+    position: relative;
+    padding: 80px 0 60px;
+    background-color: #000000 !important;
+    width: 100%;
+    border-bottom: 1px solid rgba($color-accent, 0.3);
+    
+    .container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 25px;
+      line-height: 1.1;
+      display: flex;
+      align-items: baseline;
+      gap: 15px;
+      
+      .highlight {
+        color: $color-accent;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $color-accent;
+        }
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        font-size: 2.8rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    
+    .header-description {
+      font-size: 1.2rem;
+      color: #ffffff;
+      max-width: 700px;
+      line-height: 1.5;
+      opacity: 0.8;
+      
+      @media (max-width: $breakpoint-md) {
+        font-size: 1rem;
+      }
+    }
+    
+    // Тонкая линия сверху
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba($color-accent, 0.1);
+    }
+  }
+} 

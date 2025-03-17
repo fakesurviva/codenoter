@@ -1,0 +1,83 @@
+@import '../_variables';
+@import '../components/page-header';
+
+.contact-page {
+  background-color: $color-black;
+  min-height: 100vh;
+  width: 100%;
+
+  .page-header {
+    position: relative;
+    background: $color-black;
+    padding: 120px 0 80px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba($color-accent, 0.1);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba($color-accent, 0.05) 0%, transparent 70%);
+      animation: pulse 15s ease-in-out infinite;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: $color-white;
+      
+      .highlight {
+        color: $color-accent;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $color-accent;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+    
+    .header-description {
+      font-size: 1.25rem;
+      color: $color-light-gray;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+} 

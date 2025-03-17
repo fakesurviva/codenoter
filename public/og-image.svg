@@ -1,0 +1,8 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="black"/>
+  <text x="600" y="280" font-family="'Inter', sans-serif" font-size="72" font-weight="700" fill="white" text-anchor="middle">Code and Note</text>
+  <text x="600" y="360" font-family="'Inter', sans-serif" font-size="36" font-weight="400" fill="white" text-anchor="middle">Портфолио фулл-стек разработчика</text>
+  <path d="M450 200L500 250L450 300" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M750 200L700 250L750 300" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M650 180L550 320" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> 

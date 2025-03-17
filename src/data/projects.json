@@ -1,0 +1,286 @@
+{
+  "projects": [
+    {
+      "id": "chocolate-piece",
+      "title": "Chocolate Piece",
+      "description": "Многостраничный сайт для кондитерского магазина с каталогом продукции, оформлением заказа и личным кабинетом",
+      "fullDescription": "Chocolate Piece - это современный многостраничный сайт для кондитерского магазина. Сайт включает в себя каталог продукции с фильтрацией и поиском, систему оформления заказа, личный кабинет пользователя, а также информационные страницы о компании и контактах. Особое внимание уделено визуальному оформлению и удобству использования.",
+      "image": "/images/projects/chocolate-piece/main.jpg",
+      "images": [
+        "/images/projects/chocolate-piece/screen1.jpg",
+        "/images/projects/chocolate-piece/screen2.jpg",
+        "/images/projects/chocolate-piece/screen3.jpg"
+      ],
+      "type": "Веб-разработка",
+      "link": "https://chocolate-piece.com",
+      "tags": [
+        {
+          "id": "html",
+          "name": "HTML5"
+        },
+        {
+          "id": "css",
+          "name": "CSS3"
+        },
+        {
+          "id": "javascript",
+          "name": "JavaScript"
+        },
+        {
+          "id": "php",
+          "name": "PHP"
+        }
+      ],
+      "features": [
+        "Каталог продукции с фильтрацией",
+        "Система оформления заказа",
+        "Личный кабинет пользователя",
+        "Адаптивный дизайн",
+        "Интеграция с платежными системами"
+      ],
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "PHP",
+        "MySQL",
+        "jQuery"
+      ]
+    },
+    {
+      "id": "premium-apple",
+      "title": "Premium Apple",
+      "description": "Многостраничный сайт магазина техники Apple с каталогом продукции и системой заказа",
+      "fullDescription": "Premium Apple - это современный многостраничный сайт для магазина техники Apple. Сайт включает в себя каталог продукции с фильтрацией по категориям, детальные страницы товаров, систему оформления заказа, а также информационные разделы о компании и контактах. Особое внимание уделено современному дизайну и удобству использования.",
+      "image": "/images/projects/premium-apple/main.jpg",
+      "images": [
+        "/images/projects/premium-apple/screen1.jpg",
+        "/images/projects/premium-apple/screen2.jpg",
+        "/images/projects/premium-apple/screen3.jpg"
+      ],
+      "type": "Веб-разработка",
+      "link": "https://premium-apple.com",
+      "tags": [
+        {
+          "id": "react",
+          "name": "React"
+        },
+        {
+          "id": "typescript",
+          "name": "TypeScript"
+        },
+        {
+          "id": "nodejs",
+          "name": "Node.js"
+        },
+        {
+          "id": "mongodb",
+          "name": "MongoDB"
+        }
+      ],
+      "features": [
+        "Каталог продукции Apple",
+        "Система заказа и оплаты",
+        "Личный кабинет",
+        "Адаптивный дизайн",
+        "Интеграция с CRM"
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "MongoDB",
+        "Express",
+        "Redux"
+      ]
+    },
+    {
+      "id": "jacklife-casino",
+      "title": "Jacklife Casino Bot",
+      "description": "Telegram бот для казино с системой управления балансом и игровыми операциями",
+      "fullDescription": "Jacklife Casino Bot - это функциональный Telegram бот для казино. Бот предоставляет пользователям возможность играть в различные азартные игры, управлять балансом, получать бонусы и участвовать в акциях. Система включает в себя административную панель для управления пользователями и операциями.",
+      "image": "/images/projects/jacklife-casino/main.jpg",
+      "images": [
+        "/images/projects/jacklife-casino/screen1.jpg",
+        "/images/projects/jacklife-casino/screen2.jpg",
+        "/images/projects/jacklife-casino/screen3.jpg"
+      ],
+      "type": "Telegram Bot",
+      "link": "https://t.me/jacklife_casino",
+      "tags": [
+        {
+          "id": "python",
+          "name": "Python"
+        },
+        {
+          "id": "telegram-api",
+          "name": "Telegram API"
+        },
+        {
+          "id": "postgresql",
+          "name": "PostgreSQL"
+        },
+        {
+          "id": "redis",
+          "name": "Redis"
+        }
+      ],
+      "features": [
+        "Система управления балансом",
+        "Различные азартные игры",
+        "Бонусная система",
+        "Административная панель",
+        "Система безопасности"
+      ],
+      "technologies": [
+        "Python",
+        "Telegram Bot API",
+        "PostgreSQL",
+        "Redis",
+        "FastAPI",
+        "Docker"
+      ]
+    },
+    {
+      "id": "crypto-signals",
+      "title": "Crypto Signals",
+      "description": "Многостраничный сайт с криптовалютными сигналами и аналитикой рынка",
+      "fullDescription": "Crypto Signals - это информационный портал, предоставляющий пользователям криптовалютные сигналы и аналитику рынка. Сайт включает в себя раздел с сигналами, технический анализ, образовательные материалы и личный кабинет пользователя. Система регулярно обновляется актуальной информацией о рынке криптовалют.",
+      "image": "/images/projects/crypto-signals/main.jpg",
+      "images": [
+        "/images/projects/crypto-signals/screen1.jpg",
+        "/images/projects/crypto-signals/screen2.jpg",
+        "/images/projects/crypto-signals/screen3.jpg"
+      ],
+      "type": "Веб-разработка",
+      "link": "https://crypto-signals.com",
+      "tags": [
+        {
+          "id": "nextjs",
+          "name": "Next.js"
+        },
+        {
+          "id": "typescript",
+          "name": "TypeScript"
+        },
+        {
+          "id": "graphql",
+          "name": "GraphQL"
+        },
+        {
+          "id": "prisma",
+          "name": "Prisma"
+        }
+      ],
+      "features": [
+        "Криптовалютные сигналы",
+        "Технический анализ",
+        "Образовательные материалы",
+        "Личный кабинет",
+        "API интеграция"
+      ],
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "GraphQL",
+        "Prisma",
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "id": "level-up",
+      "title": "Level Up",
+      "description": "Современный сайт для рекламной компании с портфолио и контактной информацией",
+      "fullDescription": "Level Up - это креативный сайт для рекламной компании. Сайт включает в себя портфолио работ, информацию об услугах, команде и контактах. Особое внимание уделено современному дизайну, анимациям и удобству использования. Сайт эффективно представляет компанию и привлекает потенциальных клиентов.",
+      "image": "/images/projects/level-up/main.jpg",
+      "images": [
+        "/images/projects/level-up/screen1.jpg",
+        "/images/projects/level-up/screen2.jpg",
+        "/images/projects/level-up/screen3.jpg"
+      ],
+      "type": "Веб-разработка",
+      "link": "https://level-up.agency",
+      "tags": [
+        {
+          "id": "react",
+          "name": "React"
+        },
+        {
+          "id": "gsap",
+          "name": "GSAP"
+        },
+        {
+          "id": "sass",
+          "name": "SASS"
+        },
+        {
+          "id": "framer-motion",
+          "name": "Framer Motion"
+        }
+      ],
+      "features": [
+        "Портфолио работ",
+        "Информация об услугах",
+        "Команда",
+        "Контакты",
+        "Адаптивный дизайн"
+      ],
+      "technologies": [
+        "React",
+        "GSAP",
+        "SASS",
+        "Framer Motion",
+        "Node.js",
+        "Express"
+      ]
+    },
+    {
+      "id": "cs2-skins",
+      "title": "CS2 Skins Market",
+      "description": "Многостраничный сайт для покупки-продажи скинов CS2 с интеграцией Steam",
+      "fullDescription": "CS2 Skins Market - это специализированная платформа для торговли скинами Counter-Strike 2. Сайт включает в себя каталог скинов, систему покупки-продажи, интеграцию с Steam для авторизации и управления инвентарем. Особое внимание уделено безопасности транзакций и удобству использования.",
+      "image": "/images/projects/cs2-skins/main.jpg",
+      "images": [
+        "/images/projects/cs2-skins/screen1.jpg",
+        "/images/projects/cs2-skins/screen2.jpg",
+        "/images/projects/cs2-skins/screen3.jpg"
+      ],
+      "type": "Веб-разработка",
+      "link": "https://cs2-skins.market",
+      "tags": [
+        {
+          "id": "vue",
+          "name": "Vue.js"
+        },
+        {
+          "id": "nodejs",
+          "name": "Node.js"
+        },
+        {
+          "id": "steam-api",
+          "name": "Steam API"
+        },
+        {
+          "id": "mongodb",
+          "name": "MongoDB"
+        }
+      ],
+      "features": [
+        "Каталог скинов",
+        "Система покупки-продажи",
+        "Интеграция со Steam",
+        "Безопасные транзакции",
+        "Личный кабинет"
+      ],
+      "technologies": [
+        "Vue.js",
+        "Node.js",
+        "Steam API",
+        "MongoDB",
+        "Express",
+        "Socket.io"
+      ]
+    }
+  ]
+} 

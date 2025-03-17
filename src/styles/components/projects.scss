@@ -1,0 +1,840 @@
+@import '../_variables';
+
+.projects {
+  position: relative;
+  background: #111111;
+  width: 100%;
+  padding: $spacing-3xl 0;
+  overflow: hidden;
+  
+  // Декоративные элементы
+  &__decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+
+    // Анимированные точки
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at center, rgba($color-accent, 0.15) 2px, transparent 2px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      animation: floatDots 20s linear infinite;
+    }
+
+    // Декоративные линии
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba($color-accent, 0.2), 
+        transparent
+      );
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+    }
+
+    // Плавающие элементы
+    .floating-element {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba($color-accent, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      opacity: 0.1;
+
+      &:nth-child(1) {
+        top: 10%;
+        left: 5%;
+        animation: floatElement 15s ease-in-out infinite;
+        transform: rotate(15deg);
+      }
+
+      &:nth-child(2) {
+        bottom: 15%;
+        right: 8%;
+        width: 100px;
+        height: 100px;
+        animation: floatElement 12s ease-in-out infinite reverse;
+        transform: rotate(-10deg);
+      }
+
+      &:nth-child(3) {
+        top: 50%;
+        left: 50%;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        animation: floatElement 18s ease-in-out infinite;
+        animation-delay: -5s;
+      }
+    }
+  }
+
+  // Анимации
+  @keyframes floatDots {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-60px);
+    }
+  }
+
+  @keyframes floatElement {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(20px, -20px) rotate(5deg);
+    }
+    50% {
+      transform: translate(-10px, 20px) rotate(-5deg);
+    }
+    75% {
+      transform: translate(-20px, -10px) rotate(3deg);
+    }
+  }
+
+  // Контент
+  .section-title {
+    position: relative;
+    z-index: 5;
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 60px;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: $color-accent;
+      border-radius: 2px;
+    }
+  }
+
+  &__grid {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .container {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__header {
+    position: relative;
+    z-index: 5;
+    padding: 0 20px;
+    margin-bottom: 60px;
+    text-align: center;
+    
+    h1, h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto;
+      padding: 0;
+      text-align: center;
+      max-width: 800px;
+      
+      span {
+        color: $color-accent;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $color-accent;
+          transform-origin: center;
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+        }
+      }
+
+      &:hover span::after {
+        transform: scaleX(1);
+      }
+    }
+    
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 20px auto 0;
+      max-width: 600px;
+      text-align: center;
+    }
+  }
+
+  &__loading,
+  &__error {
+    text-align: center;
+    padding: $spacing-2xl;
+    color: $color-light-gray;
+    font-size: $font-size-lg;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .projects {
+    padding: $spacing-2xl 0;
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 15px;
+    }
+
+    &__decorations {
+      .floating-element {
+        display: none;
+      }
+    }
+  }
+}
+
+.project-card {
+  background: $color-dark-gray;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: $transition-normal;
+  border: 1px solid rgba($color-white, 0.1);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+    .project-card__image img {
+      transform: scale(1.1);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, rgba($color-dark-gray, 1), transparent);
+    }
+  }
+
+  &__content {
+    padding: $spacing-lg;
+
+    h3 {
+      font-size: $font-size-xl;
+      color: $color-white;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $color-light-gray;
+      margin-bottom: $spacing-md;
+      line-height: 1.6;
+      font-size: $font-size-md;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+
+    .tag {
+      padding: 4px 12px;
+      background: rgba($color-accent, 0.2);
+      border: 1px solid rgba($color-accent, 0.3);
+      border-radius: 20px;
+      font-size: $font-size-xs;
+      color: $color-accent;
+    }
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .project-card {
+    &__image {
+      height: 180px;
+    }
+
+    &__content {
+      padding: $spacing-md;
+
+      h3 {
+        font-size: $font-size-lg;
+      }
+
+      p {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+@import '../_variables';
+
+.projects {
+  position: relative;
+  background-color: #000000;
+  width: 100%;
+  padding: $spacing-3xl 0;
+  
+  // Верхняя секция с заголовком
+  &__header {
+    position: relative;
+    z-index: 5;
+    padding: 0 20px;
+    margin-bottom: 60px;
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      
+      span {
+        color: $color-accent;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $color-accent;
+        }
+      }
+    }
+    
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #fff;
+      margin: 20px auto 0;
+      max-width: 600px;
+      text-align: center;
+    }
+  }
+
+  // Убираем старые стили заголовка
+  &__title,
+  &__subtitle {
+    display: none;
+  }
+  
+  // Фильтры
+  &__filters {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    gap: 15px;
+    position: relative;
+    z-index: 5;
+    
+    &-item {
+      padding: 8px 20px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: #222;
+        border-color: $color-accent;
+      }
+      
+      &.active {
+        background: $color-accent;
+        border-color: $color-accent;
+      }
+    }
+  }
+
+  // Восстанавливаем фоновые элементы
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    
+    &-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, 
+        rgba($color-accent, 0.15) 0%,
+        transparent 15%,
+        transparent 85%,
+        rgba($color-accent, 0.15) 100%
+      );
+    }
+    
+    &-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 60%;
+      background: radial-gradient(
+        circle at center,
+        rgba($color-accent, 0.15) 0%,
+        transparent 70%
+      );
+      filter: blur(60px);
+    }
+    
+    &-dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+      );
+      background-size: 30px 30px;
+      opacity: 0.5;
+    }
+    
+    &-horizon {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba($color-accent, 0.3) 50%,
+        transparent 100%
+      );
+    }
+  }
+  
+  // Убираем старый градиент
+  &::before {
+    display: none;
+  }
+  
+  &::after {
+    display: none;
+  }
+  
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 5;
+    
+    .project-card {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+      
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.1}s;
+        }
+      }
+    }
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  
+  &__empty {
+    text-align: center;
+    padding: $spacing-2xl;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin: 0 auto;
+    max-width: 600px;
+    z-index: 2;
+    position: relative;
+    
+    p {
+      color: $color-light-gray;
+      font-size: $font-size-md;
+    }
+  }
+  
+  &__more {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-3xl;
+    z-index: 2;
+    position: relative;
+    
+    .btn {
+      min-width: 200px;
+      padding: $spacing-sm $spacing-lg;
+      background-color: transparent;
+      border: 1px solid rgba($color-accent, 0.4);
+      border-radius: 30px;
+      color: $color-white;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.6s ease;
+      }
+      
+      &:hover {
+        background-color: rgba($color-accent, 0.1);
+        border-color: $color-accent;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        
+        &::before {
+          left: 100%;
+        }
+      }
+    }
+  }
+}
+
+.project-card {
+  position: relative;
+  background-color: #111111;
+  border-radius: 12px;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    
+    .project-card__image img {
+      transform: scale(1.1);
+    }
+    
+    .project-card__overlay {
+      opacity: 1;
+    }
+
+    .project-card__link {
+      transform: translateY(0);
+    }
+  }
+  
+  &__image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+  
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &__link {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: $color-accent;
+    color: $color-dark;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: $font-weight-bold;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 2px solid transparent;
+    
+    &:hover {
+      background-color: transparent;
+      color: $color-accent;
+      border: 2px solid $color-accent;
+      transform: translateY(0);
+      box-shadow: 0 0 20px rgba($color-accent, 0.3);
+    }
+  }
+  
+  &__content {
+    padding: 20px;
+  }
+  
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  &__description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+  }
+  
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  &__type {
+    font-size: 12px;
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  &__tags {
+    display: flex;
+    gap: 8px;
+    
+    .tag {
+      padding: 4px 8px;
+      background-color: rgba($color-accent, 0.1);
+      border-radius: 4px;
+      font-size: 12px;
+      color: $color-accent;
+      transition: background-color 0.2s ease;
+      
+      &:hover {
+        background-color: rgba($color-accent, 0.2);
+      }
+    }
+  }
+}
+
+.projects__more {
+  margin-top: 40px;
+  text-align: center;
+  
+  .btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: transparent;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    
+    &:hover {
+      background-color: $color-accent;
+      color: #fff;
+      
+      .btn-shine {
+        left: 120%;
+      }
+    }
+    
+    .btn-shine {
+      position: absolute;
+      top: -50%;
+      left: -100%;
+      width: 50px;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(30deg);
+      transition: all 0.5s ease;
+    }
+  }
+}
+
+// Медиа-запросы для адаптивности
+@media (max-width: 768px) {
+  .projects {
+    &__grid {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@keyframes floatSquare {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, 15px) rotate(5deg);
+  }
+  50% {
+    transform: translate(20px, 5px) rotate(10deg);
+  }
+  75% {
+    transform: translate(10px, -10px) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes floatCircle {
+  0% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(15px, 10px);
+  }
+  66% {
+    transform: translate(-10px, 15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

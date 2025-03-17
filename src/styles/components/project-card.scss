@@ -1,0 +1,166 @@
+@import '../_variables';
+
+.project-card {
+  position: relative;
+  background-color: #111111;
+  border-radius: 12px;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+  min-height: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba($color-accent, 0.1);
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    
+    .project-card__image img {
+      transform: scale(1.1);
+    }
+  }
+  
+  &__image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    flex-shrink: 0;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, rgba(#111111, 1), transparent);
+    }
+  }
+  
+  &__content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, rgba(#111111, 0.8) 0%, rgba(#111111, 0.95) 100%);
+    min-height: 0;
+
+    .btn-more {
+      margin-top: auto;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      backdrop-filter: blur(5px);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+        &::before {
+          left: 100%;
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+  
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  &__description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  &__tag {
+    padding: 6px 12px;
+    background: rgba($color-accent, 0.15);
+    border: 1px solid rgba($color-accent, 0.3);
+    border-radius: 20px;
+    font-size: 14px;
+    color: $color-accent;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba($color-accent, 0.2);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Grid layout для карточек
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+} 

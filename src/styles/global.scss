@@ -1,0 +1,414 @@
+@import '_variables';
+
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
+
+/* Сброс стилей */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  background-color: #000000;
+  color: $color-white;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  width: 100%;
+}
+
+/* Типографика */
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-mono;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-3xl;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-2xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-2xl;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-xl;
+}
+
+h5 {
+  font-size: $font-size-lg;
+}
+
+h6 {
+  font-size: $font-size-md;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  font-size: $font-size-md;
+}
+
+a {
+  color: $color-white;
+  text-decoration: none;
+  transition: $transition-fast;
+  position: relative;
+  
+  &:hover {
+    color: $color-accent;
+  }
+  
+  &.underline {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: $color-accent;
+      transition: $transition-normal;
+    }
+    
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+/* Контейнеры */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  position: relative;
+  
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-md;
+  }
+}
+
+.section {
+  padding: $spacing-3xl 0;
+  width: 100%;
+  position: relative;
+  background-color: #000000;
+  
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-2xl 0;
+  }
+}
+
+/* Кнопки */
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  background-color: transparent;
+  border: 1px solid $color-white;
+  color: $color-white;
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: $transition-normal;
+  
+  &:hover {
+    background-color: $color-white;
+    color: $color-black;
+  }
+  
+  &.btn-primary {
+    background-color: $color-white;
+    color: $color-black;
+    
+    &:hover {
+      background-color: transparent;
+      color: $color-white;
+    }
+  }
+}
+
+/* Утилиты */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-mono {
+  font-family: $font-mono;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: $spacing-xs;
+}
+
+.mb-2 {
+  margin-bottom: $spacing-sm;
+}
+
+.mb-3 {
+  margin-bottom: $spacing-md;
+}
+
+.mb-4 {
+  margin-bottom: $spacing-lg;
+}
+
+.mb-5 {
+  margin-bottom: $spacing-xl;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-1 {
+  margin-top: $spacing-xs;
+}
+
+.mt-2 {
+  margin-top: $spacing-sm;
+}
+
+.mt-3 {
+  margin-top: $spacing-md;
+}
+
+.mt-4 {
+  margin-top: $spacing-lg;
+}
+
+.mt-5 {
+  margin-top: $spacing-xl;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.fade-in-down {
+  animation: fadeInDown 0.6s ease forwards;
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.6s ease forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.6s ease forwards;
+}
+
+/* Сетка */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacing-lg;
+  
+  @media (max-width: $breakpoint-md) {
+    gap: $spacing-md;
+  }
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Основной контейнер */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1;
+  padding-top: 80px; /* Высота хедера */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Шум */
+.noise {
+  display: none; /* Отключаем шум, который может создавать странный эффект */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Общие стили для всех страниц */
+.page {
+  background-color: #000000;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.page-header {
+  position: relative;
+  padding: 80px 0 60px;
+  background-color: #000000;
+  width: 100%;
+  border-bottom: 1px solid rgba($color-accent, 0.3);
+  
+  .container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 2;
+  }
+  
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 25px;
+    line-height: 1.1;
+    
+    .highlight {
+      color: $color-accent;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $color-accent;
+      }
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      font-size: 2.8rem;
+    }
+  }
+  
+  .header-description {
+    font-size: 1.2rem;
+    color: #ffffff;
+    max-width: 700px;
+    line-height: 1.5;
+    opacity: 0.8;
+    
+    @media (max-width: $breakpoint-md) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.section {
+  background-color: #000000;
+  width: 100%;
+} 

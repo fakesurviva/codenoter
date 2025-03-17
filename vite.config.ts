@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,33 +8,44 @@ export default defineConfig({
   publicDir: 'public',
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
-      '@components': resolve(__dirname, './src/components'),
-      '@pages': resolve(__dirname, './src/pages'),
-      '@styles': resolve(__dirname, './src/styles'),
-      '@assets': resolve(__dirname, './src/assets'),
-      '@hooks': resolve(__dirname, './src/hooks'),
-      '@services': resolve(__dirname, './src/services'),
-      '@utils': resolve(__dirname, './src/utils'),
-      '@context': resolve(__dirname, './src/context')
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@styles': path.resolve(__dirname, './src/styles'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@services': path.resolve(__dirname, './src/services'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@context': path.resolve(__dirname, './src/context'),
+      '@api': path.resolve(__dirname, './api')
     }
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: false,
+    sourcemap: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        main: path.resolve(__dirname, 'index.html'),
       },
       output: {
-        manualChunks: undefined
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'framer-motion'],
+          utils: ['@utils']
+        }
       }
     }
   },
   server: {
     port: 3000,
-    strictPort: true
+    strictPort: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path
+      }
+    }
   },
   preview: {
     port: 3000,

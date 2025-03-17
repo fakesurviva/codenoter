@@ -1,28 +1,17 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import cors from 'cors';
-import { config } from 'dotenv';
-
-config();
-
-const corsMiddleware = cors({
-  origin: '*',
-  methods: ['POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-});
 
 export default async function handler(
   request: VercelRequest,
   response: VercelResponse,
 ) {
-  // Применяем CORS middleware
-  await new Promise((resolve, reject) => {
-    corsMiddleware(request, response, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
+  // Разрешаем CORS
+  response.setHeader('Access-Control-Allow-Credentials', 'true');
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  response.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
 
   // Обрабатываем OPTIONS запрос для CORS
   if (request.method === 'OPTIONS') {

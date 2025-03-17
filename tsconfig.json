@@ -37,5 +37,6 @@
     "types": ["@vercel/node"]
   },
   "include": ["src/**/*", "api/**/*"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
